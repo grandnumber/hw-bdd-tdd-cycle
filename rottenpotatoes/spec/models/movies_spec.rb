@@ -33,6 +33,8 @@ describe Movie do
      expect(@results_array.uniq.first).to_not eql(@diff_dir_movie.director)
     end
 
+    
+
 
   end
 

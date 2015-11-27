@@ -2,6 +2,13 @@ require 'rails_helper'
 
 describe Movie do
 
+  describe '#all_ratings' do
+		it "returns a list of all existing ratings" do
+			ratings = Movie.all_ratings
+			ratings.length.should be 5
+		end
+	end
+
   before :each do
     @fake_movie = FactoryGirl::create(:movie)
     @fake_movie2 = FactoryGirl::create(:movie)
@@ -32,9 +39,6 @@ describe Movie do
      expect(@results_array.uniq.first).to_not eql(@empty_dir_movie.director)
      expect(@results_array.uniq.first).to_not eql(@diff_dir_movie.director)
     end
-
-    
-
 
   end
 

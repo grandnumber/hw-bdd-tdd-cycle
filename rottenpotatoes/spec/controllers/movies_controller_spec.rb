@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'uri'
 
 describe MoviesController do
 
@@ -113,9 +114,12 @@ describe 'update the total attributes! ' do
    it 'should redirect if sort order has been changed' do
       session[:sort] = 'release_date'
       get :index, {:sort => 'title'}
-      # rest = {ratings: "ratings%5BG%5D=G&ratings%5BNC-17%5D=NC-17&ratings%5BPG%5D=PG&ratings%5BPG-13%5D=PG-13&ratings%5BR%5D=R"}
-      # response.should redirect_to(movies_path(:sort => 'title', :ratings => rest))
-
+      response.should redirect_to(movies_path(:sort => 'title', :ratings => {:G => "G", :PG => "PG", "PG-13".to_sym => "PG-13", "NC-17".to_sym => "NC-17", :R => "R" }))
+      # HOW TO CHECK ON REDIRECT WITH PARAMS  without doing this?????? => can we use uri like capybara OR can we capture the URI and regex the result for instance??? 
+      # Expected <http://test.host/movies?ratings%5BG%5D=G&ratings%5BNC-17%5D=NC-17&ratings%5BPG%5D=PG&ratings%5BPG-13%5D=PG-13&ratings%5BR%5D=R&sort=release_date>
+      # but was  <http://test.host/movies?ratings%5BG%5D=G&ratings%5BNC-17%5D=NC-17&ratings%5BPG%5D=PG&ratings%5BPG-13%5D=PG-13&ratings%5BR%5D=R&sort=title>.
+      # @uri = URI.parse(current_url)
+      # "#{@uri.path}?#{@uri.query}".should == people_path(:search => 'name')
 
     end
 

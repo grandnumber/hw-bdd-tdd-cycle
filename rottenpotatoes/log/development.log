@@ -1013,3 +1013,25 @@ Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2015-11-26 14:22:02 -
 
 
 Started GET "/assets/jquery.self.js?body=1" for ::1 at 2015-11-26 14:22:02 -0800
+
+
+Started GET "/movies/1/edit" for ::1 at 2015-11-26 15:34:27 -0800
+Processing by MoviesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMovie Load (0.4ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered movies/edit.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 23ms (Views: 21.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2015-11-26 15:34:27 -0800
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2015-11-26 15:34:27 -0800
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2015-11-26 15:34:27 -0800
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2015-11-26 15:34:27 -0800
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies"  ORDER BY "movies"."id" ASC LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT  "movies".* FROM "movies"  ORDER BY "movies"."id" ASC LIMIT 1

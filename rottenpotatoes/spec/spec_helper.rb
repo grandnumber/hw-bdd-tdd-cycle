@@ -15,6 +15,8 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
+require 'factory_girl' # require the gem
+# require_relative './factories/factories' # this should point to the factory_girl.rb file
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -111,11 +111,12 @@ describe 'update the total attributes! ' do
  end
 
  describe 'all that crazy sort and filter at index as so many lines!' do
+
    it 'should redirect if sort order has been changed' do
       session[:sort] = 'release_date'
       get :index, {:sort => 'title'}
-      response.should redirect_to(movies_path(:sort => 'title', :ratings => {:G => "G", :PG => "PG", "PG-13".to_sym => "PG-13", "NC-17".to_sym => "NC-17", :R => "R" }))
-      # HOW TO CHECK ON REDIRECT WITH PARAMS  without doing this?????? => can we use uri like capybara OR can we capture the URI and regex the result for instance??? 
+      expect(response).to redirect_to(movies_path(:sort => 'title', :ratings => {:G => "G", :PG => "PG", "PG-13".to_sym => "PG-13", "NC-17".to_sym => "NC-17", :R => "R" }))
+      # HOW TO CHECK ON REDIRECT WITH PARAMS  without doing this?????? => can we use uri like capybara OR can we capture the URI and regex the result for instance???
       # Expected <http://test.host/movies?ratings%5BG%5D=G&ratings%5BNC-17%5D=NC-17&ratings%5BPG%5D=PG&ratings%5BPG-13%5D=PG-13&ratings%5BR%5D=R&sort=release_date>
       # but was  <http://test.host/movies?ratings%5BG%5D=G&ratings%5BNC-17%5D=NC-17&ratings%5BPG%5D=PG&ratings%5BPG-13%5D=PG-13&ratings%5BR%5D=R&sort=title>.
       # @uri = URI.parse(current_url)
@@ -125,11 +126,12 @@ describe 'update the total attributes! ' do
 
     it 'should be possible to order by release date' do
       get :index, {:sort => 'release_date'}
+      expect(response).to redirect_to(movies_path(:sort  => 'release_date', :ratings => {:G => "G", :PG => "PG", "PG-13".to_sym => "PG-13", "NC-17".to_sym => "NC-17", :R => "R" }))
     end
 
     it 'should redirect if selected ratings are changed' do
       get :index, {:ratings => {:G => 1}}
-      expect(response).to redirect_to(movies_path(:ratings => {:G => 1}))
+      expect(response).to redirect_to(movies_path(:ratings => {:G => 1},))
     end
     it 'should call database to get movies' do
       allow(Movie).to receive(:all_ratings).and_return(@fake_results)
@@ -142,6 +144,7 @@ describe 'update the total attributes! ' do
         it 'should show Movie by id' do
             allow(Movie).to receive(:find).with(@fake_movie2.id.to_s).and_return(@fake_movie2)
             get :show, {:id => @fake_movie2.id.to_s}
+            expect(response).to render_template('show')
         end
     end
 

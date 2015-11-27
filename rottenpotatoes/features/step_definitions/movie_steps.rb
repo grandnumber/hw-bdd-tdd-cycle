@@ -8,3 +8,6 @@ Then(/^the director of "(.*?)" should be "(.*?)"$/) do |movie, director|
      page.should have_content(movie)
      page.should have_content(director)
 end
+
+Then("Find Movies With Same Director") do
+end 

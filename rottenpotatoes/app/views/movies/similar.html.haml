@@ -15,3 +15,6 @@ hello - similar movies are:
         %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
+
+
+= link_to 'Back to all movie list', movies_path
